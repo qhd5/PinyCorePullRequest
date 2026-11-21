@@ -41,6 +41,11 @@ menu "mathematica config"
         bool "PID"
         default n
 
+    config USE_MATHEMATICA_QP
+        bool "QP (TinyMPC)"
+        select USE_MATHEMATICA_MATRIX
+        default n
+
     config USE_MATHEMATICA_RAMP
         bool "Ramp"
         default n

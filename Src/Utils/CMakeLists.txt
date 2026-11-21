@@ -25,6 +25,7 @@ if(USE_MATHEMATICA)
   add_mathematica_module(USE_MATHEMATICA_MATRIX Matrix)
   add_mathematica_module(USE_MATHEMATICA_OLS OLS)
   add_mathematica_module(USE_MATHEMATICA_PID PID)
+  add_mathematica_module(USE_MATHEMATICA_QP QP)
   add_mathematica_module(USE_MATHEMATICA_RAMP Ramp)
   add_mathematica_module(USE_MATHEMATICA_RICCATI Riccati)
   add_mathematica_module(USE_MATHEMATICA_RLS RLS)
@@ -76,4 +77,9 @@ target_link_libraries(
 
 if(USE_MATHEMATICA AND NOT DEFINED TARGET_STM32F103C8TX)
   target_link_libraries(utils PUBLIC CMSISDSP)
+endif()
+
+# TinyMPC/Eigen headers stay private to the QP backend
+if(USE_MATHEMATICA AND USE_MATHEMATICA_QP)
+  target_link_libraries(utils PRIVATE tinympcstatic)
 endif()
